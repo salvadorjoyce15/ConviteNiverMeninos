@@ -501,6 +501,10 @@
           <label for="nome">Seu nome</label>
           <input id="nome" name="nome" type="text" autocomplete="name" placeholder="Ex.: Família Souza" required>
         </div>
+        <div class="f-nome">
+          <label for="telefone">Telefone</label>
+          <input id="telefone" name="telefone" type="tel" autocomplete="tel" placeholder="Ex.: (41) 99999-9999" inputmode="tel" required>
+        </div>
         <div>
           <label for="adultos">Adultos</label>
           <input id="adultos" name="adultos" type="number" min="0" max="20" value="2" inputmode="numeric">
@@ -515,7 +519,7 @@
         </div>
         <input type="hidden" name="_subject" value="Nova confirmação de presença — Festa Davi & Isaac">
         <input type="hidden" name="_captcha" value="false">
-        <p class="erro" id="erro" hidden>Escreva seu nome para confirmar a presença.</p>
+        <p class="erro" id="erro" hidden>Preencha nome e telefone para confirmar a presença.</p>
         <button class="btn enviar" type="submit">Confirmar presença</button>
 
         <div class="resultado" id="resultado" hidden>
@@ -625,23 +629,31 @@
 
     const btn = document.querySelector(".enviar");
     const nome = $("nome").value.trim();
+    const telefone = $("telefone").value.trim();
     const adultos = Math.max(0, parseInt($("adultos").value, 10) || 0);
     const kids = Math.max(0, parseInt($("kids").value, 10) || 0);
     const recado = $("recado").value.trim();
 
     if (!nome) { $("erro").hidden = false; $("nome").focus(); return; }
+    if (!telefone) { $("erro").hidden = false; $("telefone").focus(); return; }
     $("erro").hidden = true;
 
     btn.textContent = "Enviando...";
     btn.disabled = true;
 
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbyX3hLqWQQFe7zsksSBHcGZXjTpqv6Nqr5f-tGU5fHG6_6mDk5WM6vOo6GJTzLmeJHh/exec';
+    const baseURL = 'https://script.google.com/macros/s/AKfycbyX3hLqWQQFe7zsksSBHcGZXjTpqv6Nqr5f-tGU5fHG6_6mDk5WM6vOo6GJTzLmeJHh/exec';
 
     const formData = new FormData();
     formData.append('nome', nome);
+    formData.append('telefone', telefone);
     formData.append('adultos', adultos);
     formData.append('criancas', kids);
     formData.append('mensagem', recado);
+
+    const params = new URLSearchParams({
+      nome, telefone, adultos, criancas: kids, mensagem: recado
+    });
+    const scriptURL = baseURL + '?' + params.toString();
 
     fetch(scriptURL, { method: 'POST', body: formData })
       .then(response => {
