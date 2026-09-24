@@ -281,8 +281,8 @@
     }
     .polaroid { position: relative; width: 72%; }
     .polaroid.a, .polaroid.b { left: auto; right: auto; top: auto; }
-    .polaroid.a { transform: rotate(-5deg); z-index: 1; align-self: flex-start; }
-    .polaroid.b { transform: rotate(5deg); z-index: 2; align-self: flex-end; margin-top: -14%; }
+    .polaroid.a { transform: rotate(-5deg); z-index: 2; align-self: flex-start; }
+    .polaroid.b { transform: rotate(5deg); z-index: 1; align-self: flex-end; margin-top: -14%; }
     .fita { width: 56px; height: 18px; top: -9px; }
     .ingresso { grid-template-columns: 1fr; }
     .ingresso .corpo { grid-template-columns: 1fr; }
@@ -293,11 +293,7 @@
     .canhoto::after { left: auto; right: -13px; }
     .barras { width: 100px; flex: none; height: 48px; }
     .pilotos { grid-template-columns: 1fr; gap: 48px; }
-    .galeria {
-      aspect-ratio: auto; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto;
-    }
-    .galeria img:first-child { grid-column: 1 / 3; grid-row: 1; aspect-ratio: 16 / 11; height: auto; }
-    .galeria img:not(:first-child) { grid-row: 2; aspect-ratio: 1 / 1; height: auto; }
+    .galeria { aspect-ratio: 2 / 2.2; }
     .regra { grid-template-columns: 1fr; gap: 6px; padding-block: 18px; }
     .rsvp .wrap { grid-template-columns: 1fr; gap: 24px; }
     .faixa .wrap { flex-direction: column; gap: 20px; }
