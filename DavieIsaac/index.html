@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grande Prêmio Davi & Isaac</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;600;800&display=swap">
+<style>
+  /* Pôster de evento: laranja de pista + asfalto. Visual único, vale em qualquer tema. */
+  :root {
+    color-scheme: dark;
+    --laranja: #FF5B14;
+    --laranja-2: #E84A08;
+    --asfalto: #111112;
+    --asfalto-2: #1B1B1D;
+    --amarelo: #FFD400;
+    --azul: #1D4BFF;
+    --papel: #F4F3EF;
+    --branco: #FFFFFF;
+    --cinza: #8C8C92;
+    --display: "Anton", "Impact", "Arial Narrow Bold", sans-serif;
+    --corpo: "Archivo", "Segoe UI", Roboto, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--asfalto);
+    color: var(--branco);
+    font-family: var(--corpo);
+    font-size: 17px;
+    line-height: 1.55;
+    overflow-x: hidden;
+  }
+  .wrap { max-width: 1120px; margin: 0 auto; padding-inline: 20px; }
+  .rotulo {
+    font-size: 12px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase;
+  }
+
+  /* ---------- HERO (pôster laranja) ---------- */
+  .hero {
+    position: relative;
+    background:
+      repeating-linear-gradient(-18deg, transparent 0 120px, rgba(0,0,0,.06) 120px 124px, transparent 124px 240px),
+      var(--laranja);
+    color: var(--asfalto);
+    overflow: hidden;
+  }
+  .topo {
+    background: var(--asfalto); color: var(--branco);
+    padding-block: 10px;
+  }
+  .topo .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .topo .rotulo:last-child { color: var(--amarelo); }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 32px;
+    align-items: center;
+    padding-block: 44px 110px;
+  }
+  h1 {
+    font-family: var(--display);
+    font-weight: 400;
+    text-transform: uppercase;
+    line-height: .84;
+    margin: 0;
+    font-size: clamp(96px, 17vw, 210px);
+    letter-spacing: -.01em;
+  }
+  h1 span { display: block; }
+  h1 .amp { font-size: .5em; line-height: 1; color: var(--branco); -webkit-text-stroke: 0; margin: .06em 0 .02em; }
+  .tag {
+    display: inline-block;
+    margin-top: 22px;
+    background: var(--asfalto); color: var(--branco);
+    font-family: var(--display); font-size: clamp(22px, 3vw, 30px);
+    text-transform: uppercase; letter-spacing: .02em;
+    padding: 4px 16px 6px;
+    transform: skewX(-10deg);
+  }
+  .tag b { color: var(--amarelo); font-weight: 400; }
+
+  .quando {
+    display: flex; flex-wrap: wrap; gap: 0;
+    margin-top: 26px;
+    border: 3px solid var(--asfalto);
+    width: fit-content; max-width: 100%;
+    background: var(--amarelo);
+  }
+  .quando div { padding: 10px 18px 12px; }
+  .quando div + div { border-left: 3px solid var(--asfalto); }
+  .quando .rotulo { display: block; font-size: 11px; }
+  .quando strong { font-family: var(--display); font-weight: 400; font-size: clamp(26px, 3.4vw, 36px); line-height: 1.05; text-transform: uppercase; }
+
+  /* fotos estilo polaroid */
+  .fotos-hero { position: relative; height: clamp(380px, 46vw, 520px); }
+  .polaroid {
+    position: absolute;
+    width: 46%;
+    background: var(--branco);
+    padding: 10px 10px 0;
+    box-shadow: 0 18px 30px -12px rgba(0,0,0,.45);
+  }
+  .polaroid img { display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover; object-position: 50% 20%; }
+  .polaroid figcaption {
+    font-family: var(--display); font-size: 24px; text-transform: uppercase;
+    color: var(--asfalto); padding: 6px 2px 8px;
+    display: flex; justify-content: space-between; align-items: baseline;
+  }
+  .polaroid figcaption small { font-family: var(--corpo); font-size: 12px; font-weight: 800; letter-spacing: .14em; color: var(--laranja-2); }
+  .polaroid.a { left: 0; top: 0; transform: rotate(-6deg); z-index: 1; }
+  .polaroid.b { right: 0; top: 18%; transform: rotate(5deg); z-index: 2; }
+  .fita {
+    position: absolute; top: -12px; left: 50%; width: 90px; height: 26px;
+    translate: -50% 0; rotate: -4deg;
+    background: rgba(255,212,0,.85);
+  }
+
+  .chamas { position: absolute; left: 0; right: 0; bottom: -1px; height: 90px; width: 100%; display: block; }
+
+  /* ---------- INGRESSO ---------- */
+  section { padding-block: 72px; }
+  h2 {
+    font-family: var(--display); font-weight: 400; text-transform: uppercase;
+    font-size: clamp(40px, 6vw, 64px); line-height: .95;
+    margin: 0 0 14px;
+    text-wrap: balance;
+  }
+  h2 em { font-style: normal; color: var(--laranja); }
+  .sub { color: var(--cinza); margin: 0 0 34px; max-width: 56ch; }
+
+  .ingresso {
+    display: grid; grid-template-columns: 1fr 190px;
+    background: var(--papel); color: var(--asfalto);
+    position: relative;
+  }
+  .ingresso .corpo {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+  }
+  .ingresso .campo { padding: 28px 26px 26px; display: flex; flex-direction: column; gap: 4px; }
+  .ingresso .campo + .campo { border-left: 1px solid #D6D4CC; }
+  .ingresso .campo .rotulo { color: var(--laranja-2); }
+  .ingresso .valor { font-family: var(--display); font-size: clamp(26px, 3vw, 34px); line-height: 1.05; text-transform: uppercase; }
+  .ingresso .det { color: #55555B; font-size: 15px; }
+  .mapa { margin-top: 8px; align-self: flex-start; color: var(--azul); font-weight: 800; font-size: 15px; text-underline-offset: 3px; }
+  .mapa:focus-visible { outline: 3px solid var(--azul); outline-offset: 3px; }
+  .canhoto {
+    border-left: 3px dashed #BDBAB0;
+    background: var(--amarelo);
+    padding: 22px 18px;
+    display: flex; flex-direction: column; justify-content: space-between; gap: 14px;
+    position: relative;
+  }
+  .canhoto::before, .canhoto::after {
+    content: ""; position: absolute; left: -14px; width: 26px; height: 26px; border-radius: 50%;
+    background: var(--asfalto);
+  }
+  .canhoto::before { top: -13px; }
+  .canhoto::after { bottom: -13px; }
+  .canhoto strong { font-family: var(--display); font-weight: 400; font-size: 30px; line-height: 1; text-transform: uppercase; }
+  .barras {
+    height: 54px;
+    background: repeating-linear-gradient(90deg,
+      var(--asfalto) 0 3px, transparent 3px 5px, var(--asfalto) 5px 6px, transparent 6px 9px,
+      var(--asfalto) 9px 13px, transparent 13px 15px, var(--asfalto) 15px 16px, transparent 16px 20px);
+  }
+
+  /* ---------- PILOTOS ---------- */
+  .pilotos { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  .piloto header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    border-bottom: 3px solid var(--laranja);
+    padding-bottom: 8px; margin-bottom: 16px;
+  }
+  .piloto h3 {
+    font-family: var(--display); font-weight: 400; text-transform: uppercase;
+    font-size: clamp(48px, 7vw, 80px); line-height: .9; margin: 0;
+  }
+  .piloto .num {
+    font-family: var(--display); font-size: 44px; line-height: 1;
+    color: var(--asfalto); background: var(--amarelo);
+    padding: 4px 12px 2px; transform: skewX(-10deg);
+  }
+  .piloto.b .num { background: var(--laranja); }
+  .galeria {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 8px;
+    aspect-ratio: 4 / 3.6;
+  }
+  .galeria img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; display: block; min-height: 0; }
+  .galeria img:first-child { grid-row: 1 / 3; }
+
+  /* ---------- CONTAGEM (faixa amarela) ---------- */
+  .faixa {
+    background: var(--amarelo); color: var(--asfalto);
+    padding-block: 36px;
+    overflow: hidden;
+  }
+  .faixa .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .faltam { font-family: var(--display); text-transform: uppercase; font-size: clamp(30px, 5vw, 56px); line-height: 1; margin: 0; }
+  .faltam .grande { font-size: 1.9em; vertical-align: -0.12em; padding-inline: .08em; font-variant-numeric: tabular-nums; }
+  .relogio { font-family: var(--display); font-size: clamp(22px, 3vw, 32px); font-variant-numeric: tabular-nums; letter-spacing: .04em; }
+  .relogio small { display: block; font-family: var(--corpo); font-size: 12px; font-weight: 800; letter-spacing: .16em; }
+  .truck { width: min(220px, 50vw); height: auto; display: block; }
+  .truck .corpo-truck { animation: pulo 1.6s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 100%; }
+  @keyframes pulo { 0%,100% { translate: 0 0; rotate: 0deg; } 40% { translate: 0 -8px; rotate: -3deg; } 60% { translate: 0 1px; rotate: 1deg; } }
+
+  /* ---------- REGRAS ---------- */
+  .regras { display: grid; gap: 0; border-top: 1px solid #2E2E32; }
+  .regra { display: grid; grid-template-columns: 280px 1fr; gap: 24px; padding-block: 22px; border-bottom: 1px solid #2E2E32; }
+  .regra h3 { font-family: var(--display); font-weight: 400; text-transform: uppercase; font-size: 28px; line-height: 1.1; margin: 0; color: var(--amarelo); }
+  .regra p { margin: 0; color: #CFCFD4; max-width: 56ch; }
+
+  /* ---------- RSVP ---------- */
+  .rsvp { background: var(--laranja); color: var(--asfalto); }
+  .rsvp .wrap { display: grid; grid-template-columns: 1fr 1.1fr; gap: 40px; align-items: start; }
+  .rsvp h2 em { color: var(--branco); }
+  .rsvp .sub { color: #3A1600; }
+  form {
+    background: var(--asfalto); color: var(--branco);
+    padding: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+  }
+  form .f-nome, form .enviar, .erro, .resultado { grid-column: 1 / -1; }
+  label { display: block; font-size: 12px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--cinza); margin-bottom: 6px; }
+  input, textarea {
+    width: 100%; font: inherit; font-weight: 600;
+    background: var(--asfalto-2); color: var(--branco);
+    border: 2px solid #34343A; border-radius: 0; padding: 13px 14px;
+  }
+  textarea { resize: vertical; min-height: 70px; }
+  input:focus-visible, textarea:focus-visible { outline: none; border-color: var(--amarelo); }
+  .btn {
+    font-family: var(--display); font-size: 22px; text-transform: uppercase; letter-spacing: .03em;
+    background: var(--amarelo); color: var(--asfalto);
+    border: 0; padding: 12px 22px 13px; cursor: pointer;
+    text-decoration: none; display: inline-block; text-align: center;
+    transition: background .15s, transform .15s;
+  }
+  .btn:hover { background: var(--branco); }
+  .btn:active { transform: translateY(2px); }
+  .btn:focus-visible { outline: 3px solid var(--branco); outline-offset: 3px; }
+  .btn.sec { background: transparent; color: var(--branco); box-shadow: inset 0 0 0 2px var(--branco); }
+  .btn.sec:hover { background: var(--branco); color: var(--asfalto); }
+  .erro { color: #FF9C7A; font-weight: 700; margin: 0; }
+  .resultado { border-top: 1px dashed #44444A; padding-top: 16px; }
+  .resultado p { margin: 0 0 12px; color: #CFCFD4; }
+  .msg { color: var(--amarelo) !important; font-weight: 700; }
+  .acoes { display: flex; flex-wrap: wrap; gap: 10px; }
+
+  /* ---------- PRESENTES ---------- */
+  .tam-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .tam-card {
+    background: var(--papel); color: var(--asfalto);
+    text-align: center; padding: 28px 20px 24px;
+    border-top: 6px solid var(--laranja);
+  }
+  .tam-card .rotulo { color: var(--laranja-2); display: block; }
+  .tam-valor {
+    display: block; margin-top: 8px;
+    font-family: var(--display); font-weight: 400; text-transform: uppercase;
+    font-size: clamp(30px, 5vw, 44px); line-height: 1;
+  }
+
+  footer { padding-block: 40px 52px; color: var(--cinza); text-align: center; font-size: 15px; }
+  footer .xadrez {
+    height: 20px; margin-bottom: 26px;
+    background: conic-gradient(var(--branco) 25%, var(--asfalto) 0 50%, var(--branco) 0 75%, var(--asfalto) 0) 0 0 / 20px 20px;
+  }
+  footer b { color: var(--branco); }
+
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; padding-bottom: 80px; }
+    .fotos-hero {
+      position: static; height: auto; max-width: 360px; width: 100%; margin: 0 auto;
+      display: flex; flex-direction: column; align-items: center;
+      padding-top: 22px;
+    }
+    .polaroid { position: relative; width: 72%; }
+    .polaroid.a, .polaroid.b { left: auto; right: auto; top: auto; }
+    .polaroid.a { transform: rotate(-5deg); z-index: 1; align-self: flex-start; }
+    .polaroid.b { transform: rotate(5deg); z-index: 2; align-self: flex-end; margin-top: -14%; }
+    .fita { width: 56px; height: 18px; top: -9px; }
+    .ingresso { grid-template-columns: 1fr; }
+    .ingresso .corpo { grid-template-columns: 1fr; }
+    .ingresso .campo + .campo { border-left: 0; border-top: 1px solid #D6D4CC; }
+    .canhoto { border-left: 0; border-top: 3px dashed #BDBAB0; flex-direction: row; align-items: center; gap: 12px; }
+    .canhoto::before, .canhoto::after { top: -14px; bottom: auto; }
+    .canhoto::before { left: -13px; }
+    .canhoto::after { left: auto; right: -13px; }
+    .barras { width: 100px; flex: none; height: 48px; }
+    .pilotos { grid-template-columns: 1fr; gap: 48px; }
+    .galeria {
+      aspect-ratio: auto; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto;
+    }
+    .galeria img:first-child { grid-column: 1 / 3; grid-row: 1; aspect-ratio: 16 / 11; height: auto; }
+    .galeria img:not(:first-child) { grid-row: 2; aspect-ratio: 1 / 1; height: auto; }
+    .regra { grid-template-columns: 1fr; gap: 6px; padding-block: 18px; }
+    .rsvp .wrap { grid-template-columns: 1fr; gap: 24px; }
+    .faixa .wrap { flex-direction: column; gap: 20px; }
+    .truck { width: 100%; max-width: 180px; }
+  }
+  @media (max-width: 600px) {
+    h1 { font-size: clamp(72px, 13vw, 96px); }
+    h2 { font-size: clamp(32px, 5vw, 40px); }
+    section { padding-block: 56px; }
+    .quando { flex-direction: column; gap: 0; width: 100%; max-width: none; }
+    .quando div { padding: 10px 14px 12px; flex: 1; }
+    .quando div + div { border-left: 0; border-top: 3px solid var(--asfalto); }
+    .quando strong { font-size: clamp(20px, 2.5vw, 28px); }
+    .ingresso .campo { padding: 20px 16px 18px; }
+    .ingresso .valor { font-size: clamp(20px, 2.5vw, 26px); }
+    .ingresso .det { font-size: 14px; }
+    .canhoto strong { font-size: 24px; }
+    .piloto h3 { font-size: clamp(36px, 6vw, 56px); }
+    .piloto .num { font-size: 36px; padding: 3px 10px 1px; }
+    .faltam { font-size: clamp(24px, 4vw, 36px); }
+    .relogio { font-size: clamp(18px, 2.5vw, 26px); }
+    form { grid-template-columns: 1fr; padding: 20px; gap: 12px; }
+    label { font-size: 11px; }
+    input { padding: 12px 12px; font-size: 16px; }
+    .btn { padding: 11px 18px 12px; font-size: 18px; }
+  }
+  @media (max-width: 380px) {
+    .hero { padding-top: 44px; }
+    .topo .wrap { flex-direction: column; gap: 6px; }
+    .topo .rotulo { font-size: 10px; }
+    .hero-grid { padding-block: 32px 70px; gap: 24px; }
+    h1 { font-size: clamp(52px, 12vw, 72px); }
+    .tag { font-size: clamp(16px, 2.2vw, 20px); padding: 3px 12px 5px; }
+    .polaroid { width: 78%; }
+    .polaroid figcaption { font-size: 16px; padding: 6px 0 6px; }
+    .polaroid figcaption small { font-size: 10px; }
+    .quando { margin-top: 18px; }
+    .ingresso .campo { padding: 16px 12px 14px; }
+    .tam-grid { gap: 10px; }
+    .tam-card { padding: 20px 10px 18px; }
+    section { padding-block: 44px; }
+    .regras { gap: 20px; }
+    .regra h3 { font-size: 22px; }
+    .regra p { font-size: 14px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .truck .corpo-truck { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="topo">
+    <div class="wrap">
+      <span class="rotulo">Convite · Festa de aniversário</span>
+      <span class="rotulo">08.11.2026</span>
+    </div>
+  </div>
+
+  <div class="wrap hero-grid">
+    <div>
+      <h1><span>Davi</span><span class="amp">&amp;</span><span>Isaac</span></h1>
+      <div class="tag">Festa <b>Monster Truck</b></div>
+      <div class="quando">
+        <div><span class="rotulo">Dia</span><strong>Dom, 08 nov</strong></div>
+        <div><span class="rotulo">Largada</span><strong id="txtHoraCurta">15h</strong></div>
+      </div>
+    </div>
+
+    <div class="fotos-hero">
+      <figure class="polaroid a">
+        <span class="fita"></span>
+        <img src="fotos/piloto-davi.jpg" alt="Davi vestido com macacão de piloto preto e verde">
+        <figcaption><span class="nomeA">Davi</span><small>Nº 1</small></figcaption>
+      </figure>
+      <figure class="polaroid b">
+        <span class="fita"></span>
+        <img src="fotos/piloto-isaac.jpg" alt="Isaac vestido com macacão de piloto vermelho">
+        <figcaption><span class="nomeB">Isaac</span><small>Nº 2</small></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <svg class="chamas" viewBox="0 0 1300 90" preserveAspectRatio="none" aria-hidden="true">
+    <path id="pathChamas" fill="#111112" d="M0 90 V60 H1300 V90 Z"/>
+  </svg>
+</header>
+
+<main>
+  <section>
+    <div class="wrap">
+      <h2>Seu <em>ingresso</em> para a arena</h2>
+      <p class="sub">Guarde a data. Tem bolo, brincadeira e muito barulho de motor.</p>
+
+      <div class="ingresso">
+        <div class="corpo">
+          <div class="campo">
+            <span class="rotulo">Data</span>
+            <span class="valor">Domingo, 8 de novembro</span>
+            <span class="det">2026</span>
+          </div>
+          <div class="campo">
+            <span class="rotulo">Horário</span>
+            <span class="valor" id="txtHora">15h às 19h</span>
+            <span class="det">Chegue cedo para pegar lugar no grid</span>
+          </div>
+          <div class="campo">
+            <span class="rotulo">Local</span>
+            <span class="valor" id="txtLocal">Salão de Festas</span>
+            <span class="det" id="txtEndereco">Rua Exemplo, 123 — Bairro, Cidade</span>
+            <a class="mapa" id="lnkMapa" href="#" target="_blank" rel="noopener">Abrir no mapa</a>
+          </div>
+        </div>
+        <div class="canhoto">
+          <div>
+            <span class="rotulo">Admite</span><br>
+            <strong>Toda a família</strong>
+          </div>
+          <div class="barras" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <h2>Os <em>pilotos</em></h2>
+      <p class="sub">Os dois campeões da festa, prontos para mais uma volta completa.</p>
+      <div class="pilotos">
+        <article class="piloto a">
+          <header><h3 class="nomeA">Davi</h3><span class="num">#1</span></header>
+          <div class="galeria">
+            <img src="fotos/foto6.jpg" alt="Aniversariante com jaqueta camuflada">
+            <img src="fotos/foto4.jpg" alt="Aniversariante segurando um foguete de montar">
+            <img src="fotos/foto5.jpg" alt="Aniversariante com corte de cabelo estiloso">
+          </div>
+        </article>
+        <article class="piloto b">
+          <header><h3 class="nomeB">Isaac</h3><span class="num">#2</span></header>
+          <div class="galeria">
+            <img src="fotos/foto1.jpg" alt="Aniversariante abraçado ao ursinho de pelúcia">
+            <img src="fotos/foto2.jpg" alt="Aniversariante com uniforme de futebol vermelho e preto">
+            <img src="fotos/foto3.jpg" alt="Aniversariante com camisa azul da seleção">
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="faixa">
+    <div class="wrap">
+      <div>
+        <p class="faltam" id="faltam">Faltam <span class="grande" id="cDias">00</span> dias</p>
+        <div class="relogio" id="relogio"><span id="cHms">00:00:00</span><small>para a largada</small></div>
+      </div>
+      <svg class="truck" viewBox="0 0 300 170" aria-hidden="true">
+        <g class="corpo-truck">
+          <g stroke="#111112" stroke-width="6" stroke-linecap="round">
+            <line x1="70" y1="120" x2="100" y2="76"/><line x1="226" y1="120" x2="196" y2="76"/>
+          </g>
+          <rect x="84" y="72" width="130" height="12" fill="#111112"/>
+          <path d="M40 76 L56 46 Q60 40 70 39 L116 34 L134 6 Q138 0 148 0 L190 0 Q200 0 206 8 L224 32 L250 38 Q262 41 262 54 L260 76 Z" fill="#1D4BFF"/>
+          <path d="M140 8 L188 8 Q196 8 200 14 L212 32 L128 32 Z" fill="#111112"/>
+          <path d="M46 68 Q70 52 92 62 Q108 48 128 58 Q146 46 166 56 Q154 64 140 64 Q124 72 108 67 Q90 76 72 70 Q60 74 46 72 Z" fill="#FF5B14"/>
+          <rect x="252" y="46" width="10" height="6" fill="#FFFFFF"/>
+        </g>
+        <g>
+          <circle cx="72" cy="124" r="40" fill="#111112"/><circle cx="72" cy="124" r="18" fill="#FF5B14"/><circle cx="72" cy="124" r="6" fill="#111112"/>
+          <circle cx="226" cy="124" r="40" fill="#111112"/><circle cx="226" cy="124" r="18" fill="#FF5B14"/><circle cx="226" cy="124" r="6" fill="#111112"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <h2>Regras da <em>arena</em></h2>
+      <p class="sub">Só três, prometemos.</p>
+      <div class="regras">
+        <div class="regra">
+          <h3>Traje de piloto</h3>
+          <p>Roupa confortável para correr e brincar. Camiseta de carrinho ou boné também valem.</p>
+        </div>
+        <div class="regra">
+          <h3>Pit stop liberado</h3>
+          <p>Bolo, docinhos e salgados para abastecer a turma entre uma brincadeira e outra.</p>
+        </div>
+        <div class="regra">
+          <h3>Confirme sua vaga</h3>
+          <p>Avise até <b id="txtPrazo">1º de novembro</b> para a gente guardar seu lugar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="rsvp" id="confirmar">
+    <div class="wrap">
+      <div>
+        <h2>Vai <em>colar</em> na festa?</h2>
+        <p class="sub">Preencha e mande a confirmação pelo WhatsApp da família.</p>
+      </div>
+      <form id="formRsvp" novalidate>
+        <div class="f-nome">
+          <label for="nome">Seu nome</label>
+          <input id="nome" name="nome" type="text" autocomplete="name" placeholder="Ex.: Família Souza" required>
+        </div>
+        <div>
+          <label for="adultos">Adultos</label>
+          <input id="adultos" name="adultos" type="number" min="0" max="20" value="2" inputmode="numeric">
+        </div>
+        <div>
+          <label for="kids">Crianças</label>
+          <input id="kids" name="criancas" type="number" min="0" max="20" value="1" inputmode="numeric">
+        </div>
+        <div class="f-nome">
+          <label for="recado">Mensagem para o aniversariante</label>
+          <textarea id="recado" name="mensagem" rows="3" placeholder="Deixe um recado pro Davi e pro Isaac..."></textarea>
+        </div>
+        <input type="hidden" name="_subject" value="Nova confirmação de presença — Festa Davi & Isaac">
+        <input type="hidden" name="_captcha" value="false">
+        <p class="erro" id="erro" hidden>Escreva seu nome para confirmar a presença.</p>
+        <button class="btn enviar" type="submit">Confirmar presença</button>
+
+        <div class="resultado" id="resultado" hidden>
+          <p class="msg" style="font-size: 20px;">✅ Presença confirmada com sucesso!</p>
+          <p>Sua mensagem foi enviada diretamente para a organização da festa.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section id="presentes">
+    <div class="wrap">
+      <h2>Informações de <em>presente</em></h2>
+      <p class="sub">Se quiser mimar os pilotos com roupa ou calçado, optamos sempre por um tamanho um pouco maior.</p>
+      <div class="tam-grid">
+        <div class="tam-card">
+          <span class="rotulo">Calçado</span>
+          <span class="tam-valor">Nº 30</span>
+        </div>
+        <div class="tam-card">
+          <span class="rotulo">Roupa</span>
+          <span class="tam-valor">6 ou 8</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="xadrez"></div>
+  <div class="wrap">Esperamos você na arena! Com carinho, <b>Davi &amp; Isaac</b>.</div>
+</footer>
+
+<script>
+  console.log("✅ Script carregado!");
+
+  /* ====== EDITE AQUI OS DADOS DA FESTA ====== */
+  const FESTA = {
+    dataHora: "2026-11-08T15:00:00",          // data e hora do início (AAAA-MM-DDTHH:MM)
+    horaCurta: "15h",
+    horaTexto: "15h",
+    local: "Casa da Vó",
+    endereco: "Travessa Guerino Scopel 55 - Bom Jesus",
+    prazo: "1º de novembro",
+    whatsapp: "41996671344",                // DDI + DDD + número, só dígitos
+    pilotoA: "Davi",                          // menino das fotos 4, 5 e 6
+    pilotoB: "Isaac"                          // menino das fotos 1, 2 e 3
+  };
+  /* ========================================== */
+
+  const $ = id => document.getElementById(id);
+  console.log("📍 Verificando elementos...");
+  console.log("cDias existe?", !!$("cDias"));
+  console.log("cHms existe?", !!$("cHms"));
+  console.log("faltam existe?", !!$("faltam"));
+  console.log("relogio existe?", !!$("relogio"));
+
+  document.querySelectorAll(".nomeA").forEach(el => el.textContent = FESTA.pilotoA);
+  document.querySelectorAll(".nomeB").forEach(el => el.textContent = FESTA.pilotoB);
+  $("txtHoraCurta").textContent = FESTA.horaCurta;
+  $("txtHora").textContent = FESTA.horaTexto;
+  $("txtLocal").textContent = FESTA.local;
+  $("txtEndereco").textContent = FESTA.endereco;
+  $("txtPrazo").textContent = FESTA.prazo;
+  $("lnkMapa").href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(FESTA.endereco);
+
+  // borda de chamas entre o pôster e o asfalto
+  const lingua = "c14 -6 22 -38 28 -70 c6 34 22 48 42 58 c8 -14 16 -24 20 -36 c4 16 8 30 10 48 ";
+  $("pathChamas").setAttribute("d", "M0 90 V88 " + lingua.repeat(13) + "V90 Z");
+
+  // contagem regressiva
+  const dataFesta = new Date(2026, 10, 8, 15, 0, 0); // mês é 0-indexado (10 = novembro)
+  const alvo = dataFesta.getTime();
+  const pad = n => String(n).padStart(2, "0");
+
+  console.log("🎉 Festa agendada para:", dataFesta.toString());
+  console.log("⏰ Agora:", new Date().toString());
+  console.log("⏱️ Diferença (ms):", alvo - Date.now());
+
+  function tick() {
+    const agora = Date.now();
+    const diff = alvo - agora;
+
+    if (diff <= 0) {
+      $("faltam").textContent = "É hoje!";
+      $("relogio").innerHTML = "Que comece<br>o show";
+      return;
+    }
+
+    const totalSeg = Math.floor(diff / 1000);
+    const dias = Math.floor(totalSeg / 86400);
+    const horas = pad(Math.floor((totalSeg % 86400) / 3600));
+    const mins = pad(Math.floor((totalSeg % 3600) / 60));
+    const segs = pad(totalSeg % 60);
+
+    $("cDias").textContent = dias;
+    $("cHms").textContent = `${horas}:${mins}:${segs}`;
+
+    setTimeout(tick, 1000);
+  }
+
+  tick();
+
+  // confirmação
+  $("formRsvp").addEventListener("submit", e => {
+    e.preventDefault();
+
+    const btn = document.querySelector(".enviar");
+    const nome = $("nome").value.trim();
+    const adultos = Math.max(0, parseInt($("adultos").value, 10) || 0);
+    const kids = Math.max(0, parseInt($("kids").value, 10) || 0);
+    const recado = $("recado").value.trim();
+
+    if (!nome) { $("erro").hidden = false; $("nome").focus(); return; }
+    $("erro").hidden = true;
+
+    btn.textContent = "Enviando...";
+    btn.disabled = true;
+
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyX3hLqWQQFe7zsksSBHcGZXjTpqv6Nqr5f-tGU5fHG6_6mDk5WM6vOo6GJTzLmeJHh/exec';
+
+    const formData = new FormData();
+    formData.append('nome', nome);
+    formData.append('adultos', adultos);
+    formData.append('criancas', kids);
+    formData.append('mensagem', recado);
+
+    fetch(scriptURL, { method: 'POST', body: formData })
+      .then(response => {
+        $("resultado").hidden = false;
+        btn.style.display = "none";
+      })
+      .catch(error => {
+        console.error('Erro ao enviar e-mail!', error.message);
+        btn.textContent = "Erro ao enviar. Tente novamente.";
+        btn.disabled = false;
+      });
+  });
+</script>
+</body>
+</html>
